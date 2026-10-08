@@ -208,6 +208,33 @@ a{color:#0f0;text-decoration:none}
 </footer>
 
 <script>
+document.getElementById('diagnosticForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('diagName').value.trim();
+  const email = document.getElementById('diagEmail').value.trim();
+  const company = document.getElementById('diagCompany').value.trim();
+  const website = document.getElementById('diagWebsite').value.trim();
+  const problem = document.getElementById('diagProblem').value.trim();
+  const status = document.getElementById('diagnosticStatus');
+
+  const subject = encodeURIComponent('FHI AI Business Diagnostic Request - ' + company);
+  const body = encodeURIComponent(
+    'NEW FHI AI BUSINESS DIAGNOSTIC REQUEST\n\n' +
+    'Name: ' + name + '\n' +
+    'Business email: ' + email + '\n' +
+    'Company / business: ' + company + '\n' +
+    'Website: ' + website + '\n\n' +
+    'Biggest business problem / opportunity:\n' +
+    problem + '\n\n' +
+    'Offer: FHI AI Business Diagnostic - $249 USD\n' +
+    'Source: zprimedoxaihq.com'
+  );
+
+  status.textContent = 'Opening your email app with the completed diagnostic request...';
+  window.location.href = 'mailto:franciscoderek7@gmail.com?subject=' + subject + '&body=' + body;
+});
+
 function zpChat(){
   const input=document.getElementById('zpChatMsg');
   const body=document.getElementById('zpChatBody');
@@ -219,12 +246,12 @@ function zpChat(){
   setTimeout(()=>{
     let r="PrimeDox AI: Command logged. A document specialist will follow up within 24 hours.";
     const m=msg.toLowerCase();
-    if(m.includes('price')||m.includes('cost')) r="PrimeDox AI: Starter $49/mo (50 docs). Pro $199/mo (unlimited). Business $499/mo (team + API). All include court-ready formatting.";
-    else if(m.includes('document')||m.includes('motion')) r="PrimeDox AI: We generate motions, contracts, demand letters, NDAs, employment agreements, and incorporation documents. Ontario court formatting standard.";
-    else if(m.includes('free')||m.includes('website')) r="PrimeDox AI: Free AI website offer active for first 50 subscribers. Sign up for any plan and receive a custom business website built with Phoenix Core.";
-    else if(m.includes('api')) r="PrimeDox AI: RESTful API available on Pro (1,000 calls/mo) and Business (10,000 calls/mo). Webhook support included. Full documentation provided.";
-    else if(m.includes('court')||m.includes('ontario')) r="PrimeDox AI: All documents comply with Ontario Superior Court Rules of Civil Procedure. Margins, fonts, headers, back sheets — automatic.";
-    else if(m.includes('help')) r="PrimeDox AI: Ask about: pricing, documents, free website, API access, court formatting, or workflow automation.";
+    if(m.includes('price')||m.includes('cost')) r="PrimeDox AI: FHI AI Business Diagnostic: $249. We analyze your business, identify AI and workflow opportunities, review operational risk, and deliver a prioritized action plan.";
+    else if(m.includes('document')||m.includes('motion')) r="PrimeDox AI: Our current primary offer is the FHI AI Business Diagnostic: a business-focused AI, workflow, revenue, and risk assessment with a prioritized action plan.";
+    else if(m.includes('free')||m.includes('website')) r="PrimeDox AI: Tell us your business problem, bottleneck, cost, or opportunity. We will determine where AI and automation can create the most practical value.";
+    else if(m.includes('api')) r="PrimeDox AI: The FHI AI Business Diagnostic is $249. No payment is processed on this page. We confirm scope and payment instructions directly.";
+    else if(m.includes('court')||m.includes('ontario')) r="PrimeDox AI: FHI combines business analysis, AI opportunity assessment, workflow analysis, revenue opportunities, and security/operational risk review.";
+    else if(m.includes('help')) r="PrimeDox AI: Ask about the $249 FHI AI Business Diagnostic, AI opportunities, workflow automation, revenue opportunities, or business bottlenecks.";
     body.innerHTML+='<div style="color:#0f0;margin:5px 0">'+r+'</div>';
     body.scrollTop=body.scrollHeight;
   }, 500);
